@@ -1,30 +1,54 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+import { ref } from "vue";
+import HomeScreen from "./components/Screen/HomeSceen.vue";
+import ArtistScreen from "./components/Screen/ArtistsScreen.vue";
+import GalleryScreen from "./components/Screen/GalleryScreeen.vue";
+import AboutScreen from "./components/Screen/AboutScreen.vue";
+import Footer from "./components/Footer.vue";
+import PreHeader from "./components/PreHeader.vue";
+import ScreenSection from "./components/ScreenSection.vue";
+
+const screen = ref("home");
+
+function changeScreen(newScreen) {
+  screen.value = newScreen;
+}
 </script>
 
 <template>
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+  <div class="main-container">
+    <PreHeader class="dg" />
+    <component
+      :is="
+        screen === 'home'
+          ? HomeScreen
+          : screen === 'artist'
+          ? ArtistScreen
+          : screen === 'gallery'
+          ? GalleryScreen
+          : AboutScreen
+      "
+      class="dg"
+    />
+    <ScreenSection class="dg" @change-screen="changeScreen" />
+    <Footer class="dg" />
   </div>
-  <HelloWorld msg="Vite + Vue" />
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+<style>
+/*debug  */
+.dg {
+  border: 1px solid red;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+
+.main-container {
+  box-sizing: border-box;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+  overflow: auto;
 }
 </style>
