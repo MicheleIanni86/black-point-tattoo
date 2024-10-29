@@ -11,7 +11,7 @@ export default {
 </script>
 <template>
   <div class="wrapper">
-    <h1>About US</h1>
+    <h1>Contact</h1>
   </div>
 </template>
 <style scoped>
@@ -19,6 +19,7 @@ export default {
   min-height: 600px;
   flex-grow: 1;
 }
+
 @media (max-width: 480px) {
   .wrapper {
     min-height: 500px;

@@ -3,7 +3,7 @@ import { ref } from "vue";
 import HomeScreen from "./components/Screen/HomeSceen.vue";
 import ArtistScreen from "./components/Screen/ArtistsScreen.vue";
 import GalleryScreen from "./components/Screen/GalleryScreeen.vue";
-import AboutScreen from "./components/Screen/AboutScreen.vue";
+import ContactScreen from "./components/Screen/ContactScreen.vue";
 import Footer from "./components/Footer.vue";
 import PreHeader from "./components/PreHeader.vue";
 import ScreenSection from "./components/ScreenSection.vue";
@@ -18,18 +18,14 @@ function changeScreen(newScreen) {
 <template>
   <div class="main-container">
     <PreHeader class="dg" />
-    <component
-      :is="
-        screen === 'home'
-          ? HomeScreen
-          : screen === 'artist'
-          ? ArtistScreen
-          : screen === 'gallery'
+    <component :is="screen === 'home'
+      ? HomeScreen
+      : screen === 'artist'
+        ? ArtistScreen
+        : screen === 'gallery'
           ? GalleryScreen
-          : AboutScreen
-      "
-      class="dg"
-    />
+          : ContactScreen
+      " class="dg" />
     <ScreenSection class="dg" @change-screen="changeScreen" />
     <Footer class="dg" />
   </div>
