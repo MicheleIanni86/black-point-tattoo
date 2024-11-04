@@ -17,7 +17,7 @@ function changeScreen(newScreen) {
 
 <template>
   <div class="main-container">
-    <PreHeader class="dg" />
+    <PreHeader class="dg" @change-screen="changeScreen" />
     <component :is="screen === 'home'
       ? HomeScreen
       : screen === 'artist'

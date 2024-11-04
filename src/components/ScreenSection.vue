@@ -4,10 +4,10 @@ export default {
   data() {
     return {
       cards: [
-        { name: "home", label: "Home", img: "Foto Home" },
-        { name: "artist", label: "Artist", img: "Foto Home" },
-        { name: "gallery", label: "Gallery", img: "Foto Home" },
-        { name: "contact", label: "Contact", img: "Foto Home" },
+        { name: "home", label: "Home", img: "src/assets/img/Card01.png" },
+        { name: "artist", label: "Artista", img: "src/assets/img/Card02.png" },
+        { name: "gallery", label: "Galleria", img: "src/assets/img/Card03.png" },
+        { name: "contact", label: "Contatti", img: "src/assets/img/Card04.png" },
       ],
     };
   },
@@ -17,11 +17,7 @@ export default {
     changeToScreen(screenName) {
       this.$emit("change-screen", screenName);
 
-      // const clickedCard = this.cards.find((card) => card.name === screenName);
-      // if (clickedCard) {
-      //   this.cards = this.cards.filter((card) => card.name !== screenName);
-      //   this.cards.splice(1, 0, clickedCard);
-      // }
+
     },
   },
 };
@@ -32,9 +28,9 @@ export default {
       <div class="row">
         <div v-for="card in cards" :key="card.name" class="dg col-xs-12 col-md-5 col-xl-3 my-3"
           @click="changeToScreen(card.name)">
-          <div class="card m-auto">
-            {{ card.label }}
-            <div>{{ card.img }}</div>
+          <div class="m-auto">
+            <div class="labelCard">{{ card.label }}</div>
+            <div><img :src="card.img" alt="" width="100%"></div>
           </div>
         </div>
       </div>
@@ -56,10 +52,9 @@ export default {
       justify-content: center;
     }
 
-    .card {
-      height: 240px;
-      aspect-ratio: 1;
-      background-color: black;
+    .labelCard {
+      font-size: medium;
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     }
   }
 
