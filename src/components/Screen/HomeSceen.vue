@@ -10,14 +10,34 @@ export default {
 };
 </script>
 <template>
-  <div class="wrapper">
+  <div class="wrapper d-flex">
+    <img src="../../assets/img/SfondoDesktop.jpeg" alt="" class="imgMain">
+    <img src="../../assets/img/MascheraLogoDesktop.png" alt="" class="maskMain">
 
   </div>
 </template>
 <style scoped>
 .wrapper {
-  min-height: 900px;
+  height: 75dvh;
   flex-grow: 1;
+  position: relative;
+
+  .imgMain {
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .maskMain {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    scale: (-50%, 50%);
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
 }
 
 @media (max-width: 480px) {
