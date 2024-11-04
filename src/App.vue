@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted, onBeforeUnmount } from 'vue';
 import HomeScreen from "./components/Screen/HomeSceen.vue";
 import ArtistScreen from "./components/Screen/ArtistsScreen.vue";
 import GalleryScreen from "./components/Screen/GalleryScreeen.vue";
@@ -9,15 +9,32 @@ import PreHeader from "./components/PreHeader.vue";
 import ScreenSection from "./components/ScreenSection.vue";
 
 const screen = ref("home");
+const showPreHeader = ref(true); // Variabile per la visibilità di PreHeader
+
+function checkScreenWidth() {
+  showPreHeader.value = window.innerWidth > 576; // Mostra PreHeader solo se la larghezza è maggiore di 576px
+}
+
+onMounted(() => {
+  checkScreenWidth(); // Controlla la larghezza iniziale dello schermo
+  window.addEventListener('resize', checkScreenWidth); // Aggiungi un listener per il resize
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', checkScreenWidth); // Rimuovi il listener al dismount
+});
 
 function changeScreen(newScreen) {
   screen.value = newScreen;
 }
+
+
+
 </script>
 
 <template>
   <div class="main-container">
-    <PreHeader class="dg" @change-screen="changeScreen" />
+    <PreHeader v-if="showPreHeader" class="dg" @change-screen="changeScreen" />
     <component :is="screen === 'home'
       ? HomeScreen
       : screen === 'artist'
@@ -33,9 +50,9 @@ function changeScreen(newScreen) {
 
 <style>
 /*debug  */
-.dg {
+/* .dg {
   border: 1px solid red;
-}
+} */
 
 .main-container {
   box-sizing: border-box;
