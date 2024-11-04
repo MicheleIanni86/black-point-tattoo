@@ -30,9 +30,10 @@ export default {
 
   .maskMain {
     position: absolute;
+    max-height: 75dvh;
     z-index: 1;
     top: 50%;
-    scale: (-50%, 50%);
+    transform: translateY(-50%);
     width: 100%;
     object-fit: cover;
     object-position: center;
